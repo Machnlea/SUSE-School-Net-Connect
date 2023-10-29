@@ -34,7 +34,7 @@ if is_connected():
     with open(filename, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
-    for key in ('账号', '密码'):
+    for key in ('账号', '密码','网络运营商（电信1，移动2，联通3）'):
         if key not in data or not data[key]:
             data[key] = input("请输入{}：".format(key))
 
@@ -51,8 +51,13 @@ else:
         ele = page.ele('#xiala').click(by_js=True)
         # ele = Keys.ENTER
         # ele = page.ele('selectDisname').click
-        
-        ele = page.ele('#_service_2').click(by_js=True) # 电信1，移动2，联通3
+        server = data['网络运营商（电信1，移动2，联通3）']
+        if server == '1':
+            ele = page.ele('#_service_1').click(by_js=True)
+        elif server == '2':
+            ele = page.ele('#_service_2').click(by_js=True) # 电信1，移动2，联通3
+        elif server == '3':
+            ele = page.ele('#_service_3').click(by_js=True)
         ele = page.ele('#loginLink_div').click(by_js=True)
         page.quit()
     
