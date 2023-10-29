@@ -12,7 +12,7 @@ filename = '账号.json'
 def is_connected():
     try:
         # 使用Google的DNS服务器进行测试
-        socket.create_connection(('8.8.8.8', 53), timeout=0.1)
+        socket.create_connection(('8.8.8.8', 53), timeout=0.5)
         return True
     except OSError:
         pass
